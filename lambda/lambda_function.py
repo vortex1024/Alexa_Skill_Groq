@@ -14,16 +14,16 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # Defina a chave de API da Groq diretamente no código
-groq_api_key = "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"
-
+#groq_api_key = "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"
+groq_api_key="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"
 client = Groq(api_key=groq_api_key)
 
-MODEL = "llama3-8b-8192"
+MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 messages = [
     {
         "role": "system",
-        "content": "Você é uma assistente muito útil. Por favor, responda de forma clara e concisa em Português do Brasil.",
+        "content": "you  are a  assistant. please reply in egnlish"
     }
 ]
 
@@ -32,7 +32,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return ask_utils.is_request_type("LaunchRequest")(handler_input)
 
     def handle(self, handler_input):
-        speak_output = "Bem vindo à assistente com IA Groq! Qual a sua pergunta?"
+        speak_output = "welcome to groq. which is the question?"
 
         return handler_input.response_builder.speak(speak_output).ask(speak_output).response
 
@@ -65,7 +65,7 @@ class HelpIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("AMAZON.HelpIntent")(handler_input)
 
     def handle(self, handler_input):
-        speak_output = "Como posso te ajudar?"
+        speak_output = "how can I help you?"
         return handler_input.response_builder.speak(speak_output).ask(speak_output).response
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
@@ -73,7 +73,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
         return (ask_utils.is_intent_name("AMAZON.CancelIntent")(handler_input) or ask_utils.is_intent_name("AMAZON.StopIntent")(handler_input))
 
     def handle(self, handler_input):
-        speak_output = "Até logo!"
+        speak_output = "see you" !"
         return handler_input.response_builder.speak(speak_output).response
 
 class SessionEndedRequestHandler(AbstractRequestHandler):
@@ -89,7 +89,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 
     def handle(self, handler_input, exception):
         logger.error(exception, exc_info=True)
-        speak_output = "Desculpe, não consegui processar sua solicitação."
+        speak_output = "error"
         return handler_input.response_builder.speak(speak_output).ask(speak_output).response
 
 sb = SkillBuilder()
