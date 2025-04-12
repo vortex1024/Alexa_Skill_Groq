@@ -73,7 +73,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
         return (ask_utils.is_intent_name("AMAZON.CancelIntent")(handler_input) or ask_utils.is_intent_name("AMAZON.StopIntent")(handler_input))
 
     def handle(self, handler_input):
-        speak_output = "see you" !"
+        speak_output = "see you !"
         return handler_input.response_builder.speak(speak_output).response
 
 class SessionEndedRequestHandler(AbstractRequestHandler):
