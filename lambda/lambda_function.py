@@ -15,7 +15,7 @@ logger.setLevel(logging.INFO)
 
 # Defina a chave de API da Groq diretamente no código
 #groq_api_key = "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"
-groq_api_key="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"
+
 client = Groq(api_key=groq_api_key)
 
 MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
